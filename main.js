@@ -36,7 +36,7 @@ for (let q in _.range(4, qmax, 2)) {
         }
 
         for (let m in _.range(2, q / 2)) {
-          let polynew = (2.0 * Math.cos(sigma * m) - e) * poly - polyold;
+          polynew = (2.0 * Math.cos(sigma * m) - e) * poly - polyold;
 
           if (poly * polynew < 0.0) {
             n += 1;
@@ -44,7 +44,83 @@ for (let q in _.range(4, qmax, 2)) {
           polyold = poly;
           poly = polynew;
         }
-        
+
+        polynew = (2.0 * Math.cos(sigma * q / 2.0) - e) * poly - 2.0 * polyold;
+
+        if (poly * polynew < 0.0) {
+          n += 1;
+        }
+
+        polyold = 1.0;
+        poly = 2.0 - e;
+
+        if (polyold * poly < 0.0) {
+          n += 1;
+        }
+
+        polynew = (2.0 * Math.cos(sigma) - e) * poly - 2.0 * polyold;
+
+        if (poly * polynew < 0.0) {
+          n += 1;
+        }
+
+        polyold = poly;
+        poly = polynew;
+
+        for (let m in _.range(2, q / 2)) {
+          polynew = (2.0 * Math.cos(sigma * m) - e) * poly - polyold;
+
+          if (poly * polynew < 0.0) {
+            n += 1;
+          }
+
+          polyold = poly;
+          poly = polynew;
+        }
+
+        polynew = (2.0 * Math.cos(sigma) - e) * poly - 2.0 * polyold;
+
+        if (poly * polynew < 0.0) {
+          n += 1;
+        }
+
+        polyold = 1.0;
+        poly = 2.0 - e;
+
+        if (polyold * poly < 0.0) {
+          n += 1;
+        }
+
+        polynew = (2.0 * Math.cos(sigma) - e) * poly - 2.0 * polyold;
+
+        if (poly * polynew < 0.0) {
+          n += 1;
+        }
+
+        polyold = poly;
+        poly = polynew;
+
+        for (let m in _.range(2, q / 2)) {
+          polynew = (2.0 * Math.cos(sigma * m) - e) * poly - polyold;
+
+          if (poly * polynew < 0.0) {
+            n += 1;
+          }
+
+          polyold = poly;
+          poly = polynew;
+        }
+
+        polynew = (2.0 * Math.cos(sigma * q / 2.0) - e) * poly - 2.0 * polyold;
+
+        if (poly * polynew < 0.0) {
+          n += 1;
+        }
+        if (n > nold) {
+          // pixels[int(MAXY - ie), int(MAXX * p / q)] = (255, 255, 255)
+          // pixels[int(MAXX * p / q), int(MAXY - ie)] = (255, 255, 255)
+        }
+        nold = n;
       }
     }
   }

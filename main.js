@@ -1,7 +1,11 @@
-const imgSize = 200;
-let canvas = document.getElementById('canvas');
-let ctx = canvas.getContext('2d');
+// Setup our main canvas container.
+var canvasContainer = document.getElementById('canvas-container');
+var contextContainer = canvasContainer.getContext('2d');
 
+var canvasContainer2 = document.getElementById('canvas-container2');
+var contextContainer2 = canvasContainer2.getContext('2d');
+
+const imgSize = 200;
 
 let gcd = (a, b) => {
   if (b == 0) {
@@ -119,6 +123,18 @@ for (let q in _.range(4, qmax, 2)) {
         if (n > nold) {
           // pixels[int(MAXY - ie), int(MAXX * p / q)] = (255, 255, 255)
           // pixels[int(MAXX * p / q), int(MAXY - ie)] = (255, 255, 255)
+          contextContainer.beginPath();
+          contextContainer.rect( (MAXY - ie), (MAXX * p / q), .1, .1);
+          contextContainer.fillStyle = 'black';
+          contextContainer.fill();
+          contextContainer.stroke();
+
+          contextContainer2.beginPath();
+
+          contextContainer2.rect( (MAXX * p / q), (MAXY - ie), .1, .1);
+          contextContainer2.fillStyle = 'red';
+          contextContainer2.fill();
+          contextContainer2.stroke();
         }
         nold = n;
       }
